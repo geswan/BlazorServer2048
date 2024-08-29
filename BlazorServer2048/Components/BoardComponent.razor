@@ -1,0 +1,17 @@
+﻿@using BlazorServer2048.Store
+@using BlazorServer2048.Components
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+
+<div class="container">
+    @for (int r = 0; r < 4; r++)
+    {
+        <div class="d-sm-flex flex-row">
+            @for (int c = 0; c < 4; c++)
+            {
+                <TileComponent Row="@r" Col="@c" />
+            }
+        </div>
+    }
+
+</div>

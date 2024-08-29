@@ -1,0 +1,38 @@
+﻿@page "/game2048"
+
+@using BlazorServer2048.Models
+@using BlazorServer2048.Components
+@using BlazorServer2048
+@using Store.DashboardUseCase
+@using BlazorServer2048.Store
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+
+<h1>2048</h1>
+
+<DashboardComponent />
+<div class="container">
+    <div class="d-sm-flex flex-row justify-content-evenly">
+        <BoardComponent />
+        <NavigationComponent />
+    </div>
+</div>
+
+
+@code {
+
+
+    [Inject]
+    public IDispatcher? Dispatcher { get; set; }
+    [Inject]
+    private IState<DashboardState>? DashboardState { get; set; }
+    protected override void OnInitialized()
+    {
+       if(DashboardState!.Value.IsInitialised is false)
+       {
+        Dispatcher!.Dispatch(new OnFirstRenderAction());
+       }
+        base.OnInitialized();
+    }
+
+}

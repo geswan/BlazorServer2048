@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Store\TilesUseCase\**" />
+    <Content Remove="Store\TilesUseCase\**" />
+    <EmbeddedResource Remove="Store\TilesUseCase\**" />
+    <None Remove="Store\TilesUseCase\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\TileComponentBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngine\GameEngine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazored.Modal" Version="7.3.1" />
+    <PackageReference Include="Fluxor" Version="6.0.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="6.0.0" />
+    <PackageReference Include="Reducible" Version="0.6.0" />
+  </ItemGroup>
+
+</Project>

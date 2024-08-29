@@ -1,0 +1,49 @@
+﻿
+@using System.ComponentModel
+@using BlazorServer2048.Store.GameboardUseCase
+@using BlazorServer2048.Models
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+<div>
+    <svg width="100" height="100">
+        <rect x="0" y="0" width="100" height="100"
+              fill="@colourList[GameboardState!.Value.BoardTiles[Id].TileValue]"
+              stroke="white" stroke-width="8" />
+        <text x="50%" y="50%" dominant-baseline="middle" font-weight="bold"
+              text-anchor="middle">@GameboardState!.Value.BoardTiles[Id].FaceValueText</text>
+    </svg>
+</div>
+
+@code {
+
+
+    public int Id 
+    { 
+        get
+        {
+            return (Row * 4) + Col;  
+        }
+    }
+        [Parameter]
+    public int Row { get; set; }
+    [Parameter]
+    public int Col { get; set; }
+    [Inject]
+    private IState<GameboardState>?GameboardState { get; set; }
+   private List<string> colourList =
+           [
+            "hsl(25, 31%, 87%)",
+            "hsl(110, 31%, 87%)",
+            "hsl(75, 70%, 87%)",
+            "hsl(129, 60%, 82%)",
+            "hsl(176, 60%, 72%)",
+            "hsl(197, 60%, 72%)",
+            "hsl(197, 60%, 54%)",
+            "hsl(233, 77%, 54%)",
+            "hsl(297, 77%, 54%)",
+            "hsl(27, 98%, 54%)",
+            "hsl(61, 98%, 54%)",
+            "hsl(304, 98%, 9%)"
+            ];
+   
+}

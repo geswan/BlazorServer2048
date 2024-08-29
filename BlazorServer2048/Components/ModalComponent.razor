@@ -1,0 +1,11 @@
+﻿<h4>Game Over Play Again?</h4>
+
+<button @onclick="Confirm" class="btn btn-primary">Ok</button>
+<button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
+
+@code {
+    [CascadingParameter] BlazoredModalInstance ModalInstance { get; set; } = default!;
+
+    private async Task Cancel() => await ModalInstance.CancelAsync();
+    private async Task Confirm() => await ModalInstance.CloseAsync(ModalResult.Ok(true));
+}
