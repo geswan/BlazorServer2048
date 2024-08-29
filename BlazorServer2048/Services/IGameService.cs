@@ -9,8 +9,8 @@ namespace BlazorServer2048.Services
         bool IsRunning { get; set; }
         List<BoardTile> BoardTiles { get; set; }
         int Total { get; }
-        (bool isRunning, int score, int newTileId) PlayMoveA(Direction direction);
-        IEnumerable<(int value, int id)> StartGameA();
+        (bool isRunning, int score, int newTileId) PlayMove(Direction direction);
+        IEnumerable<(int value, int id)> StartGame();
         int GetTileValue(int x, int y);
         int GetTileValue(int x);
     }

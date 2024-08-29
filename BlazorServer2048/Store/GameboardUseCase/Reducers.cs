@@ -9,7 +9,7 @@ namespace BlazorServer2048.Store.GameboardUseCase
     {
 
         [ReducerMethod]
-        public static GameboardState ReduceUpdateAllTilesActionResultA(GameboardState state, UpdateAllTilesActionResultA action)
+        public static GameboardState ReduceUpdateAllTilesActionResult(GameboardState state, UpdateAllTilesActionResult action)
         {
             List<BoardTile> updatedTiles = [];
             foreach (var boardTile in state!.BoardTiles)
@@ -29,7 +29,7 @@ namespace BlazorServer2048.Store.GameboardUseCase
         }
 
         [ReducerMethod]
-        public static GameboardState ReduceUpdateSingleTileActionResultA(GameboardState state, UpdateSingleTileActionResultA action)
+        public static GameboardState ReduceUpdateSingleTileActionResult(GameboardState state, UpdateSingleTileActionResult action)
         {
             var updatedTiles = state!.BoardTiles.SetItem(
                 action.TileId, new BoardTile(action.TileId, action.TileValue));

@@ -16,22 +16,22 @@ namespace BlazorServer2048.Store.GameboardUseCase
         }
 
         [EffectMethod]
-        public Task HandleStartGameA(BoardInitialiseAction action, IDispatcher dispatcher)
+        public Task HandleStartGame(BoardInitialiseAction action, IDispatcher dispatcher)
         {
 
             var changedValues = new Dictionary<int, int>();
-            IEnumerable<(int value, int id)> tileValues = GameService.StartGameA();
+            IEnumerable<(int value, int id)> tileValues = GameService.StartGame();
             foreach ((int value, int id) in tileValues)
             {
                 changedValues.Add(id, value);
             }
 
-            dispatcher.Dispatch(new UpdateAllTilesActionResultA(changedValues));
+            dispatcher.Dispatch(new UpdateAllTilesActionResult(changedValues));
             return Task.CompletedTask;
         }
 
         [EffectMethod]
-        public async  Task HandleUpdateBoardA(UpdateBoardAction action, IDispatcher dispatcher)
+        public async  Task HandleUpdateBoard(UpdateBoardAction action, IDispatcher dispatcher)
         {
             var changedTileValues = new Dictionary<int, int>();
             for (int i = 0; i < 16; i++)
@@ -42,14 +42,14 @@ namespace BlazorServer2048.Store.GameboardUseCase
                     changedTileValues.Add(i, value);
                 }
             }         
-            dispatcher.Dispatch(new UpdateAllTilesActionResultA(changedTileValues ));
+            dispatcher.Dispatch(new UpdateAllTilesActionResult(changedTileValues ));
             //flash the new tile
             //handled here and not in the BoardComponent as it updates the state
             int newTileValue = GameService.GetTileValue(action.NewTileId);
             await Task.Delay(flashRate);
-            dispatcher!.Dispatch(new UpdateSingleTileActionResultA(action.NewTileId, 0));
+            dispatcher!.Dispatch(new UpdateSingleTileActionResult(action.NewTileId, 0));
             await Task.Delay(flashRate);
-            dispatcher.Dispatch(new UpdateSingleTileActionResultA(action.NewTileId, newTileValue));
+            dispatcher.Dispatch(new UpdateSingleTileActionResult(action.NewTileId, newTileValue));
             if (action.IsRunning is false)
             {
                 string msg = GameService.IsGameWon ? "Congratulations You Have Won!" : "Better Luck Next Time.";

@@ -28,7 +28,7 @@ namespace BlazorServer2048.Services
 
         public bool IsRunning { get; set; } = true;
 
-        public IEnumerable<(int value, int id)> StartGameA()
+        public IEnumerable<(int value, int id)> StartGame()
         {
 
             gameEngine.Reset();
@@ -40,7 +40,7 @@ namespace BlazorServer2048.Services
         }
 
 
-        public (bool isRunning, int score, int newTileId) PlayMoveA(Direction direction)
+        public (bool isRunning, int score, int newTileId) PlayMove(Direction direction)
         {
             if (direction == Direction.UnKnown) return (false, 0, -1);
             int score = gameEngine.SlideTiles(direction);
