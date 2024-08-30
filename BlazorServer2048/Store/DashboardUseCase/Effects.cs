@@ -31,20 +31,20 @@ namespace BlazorServer2048.Store.DashboardUseCase
           
             return Task.CompletedTask;
         }
-        [EffectMethod]
-        public Task HandleDirectionSelectedAction(DirectionSelectedAction action, IDispatcher dispatcher)
-        {
-            int score;
-            if (GameService.IsRunning)
-            {
-                (bool isRunning, score, int newTileId) = GameService.PlayMove(action.Direction);
-                dispatcher.Dispatch(new DirectionSelectedActionResult(isRunning, score + State.Value.Total));
-                if (newTileId == -1) return Task.CompletedTask;//no new tile required so the board has not changed
-                //separation of concerns, let the TilesUseCase Effects class update the board
-                dispatcher.Dispatch(new UpdateBoardAction(newTileId,isRunning));
-            }
-            return Task.CompletedTask;
-        }
+        //[EffectMethod]
+        //public Task HandleDirectionSelectedAction(DirectionSelectedAction action, IDispatcher dispatcher)
+        //{
+        //    int score;
+        //    if (GameService.IsRunning)
+        //    {
+        //        (bool isRunning, score, int newTileId) = GameService.PlayMove(action.Direction);
+        //        dispatcher.Dispatch(new DirectionSelectedActionResult(isRunning, score + State.Value.Total));
+        //        if (newTileId == -1) return Task.CompletedTask;//no new tile required so the board has not changed
+        //        //separation of concerns, let the TilesUseCase Effects class update the board
+        //        dispatcher.Dispatch(new UpdateBoardAction(newTileId,isRunning));
+        //    }
+        //    return Task.CompletedTask;
+        //}
 
         [EffectMethod(typeof(OnFirstRenderAction))]
         public Task HandleOnFirstRenderAction(IDispatcher dispatcher)

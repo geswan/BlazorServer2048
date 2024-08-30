@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using System.Numerics;
 
 namespace BlazorServer2048.Store.DashboardUseCase
 {
@@ -14,8 +15,8 @@ namespace BlazorServer2048.Store.DashboardUseCase
         [ReducerMethod]
         public static DashboardState DirectionSelectedActionResult(DashboardState state, DirectionSelectedActionResult action)
         {
-           
-            return state with { IsRunning = action.IsRunning, Total=action.Total};
+
+            return state with { IsRunning = action.IsRunning, Total =state.Total + action.Score };
 
         }
 
