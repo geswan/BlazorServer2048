@@ -10,8 +10,8 @@ namespace BlazorServer2048.Store.GameboardUseCase
         public IGameService GameService { get; set; } = gameService;
         public IState<GameboardState> GameboardState { get; set; } = gameboardState;
 
-        [EffectMethod]
-        public Task HandleStartGame(BoardInitialiseAction action, IDispatcher dispatcher)
+        [EffectMethod(typeof(BoardInitialiseAction))]
+        public Task HandleStartGame( IDispatcher dispatcher)
         {
 
             var changedValues = new Dictionary<int, int>();
