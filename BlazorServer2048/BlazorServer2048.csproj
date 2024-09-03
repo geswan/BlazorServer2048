@@ -25,7 +25,6 @@
     <PackageReference Include="Blazored.Modal" Version="7.3.1" />
     <PackageReference Include="Fluxor" Version="6.0.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="6.0.0" />
-    <PackageReference Include="Reducible" Version="0.6.0" />
   </ItemGroup>
 
 </Project>

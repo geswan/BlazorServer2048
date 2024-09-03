@@ -2,10 +2,11 @@
 @using Store.DashboardUseCase
 @using Microsoft.AspNetCore.Components
 @using BlazorServer2048.Store
+
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 <div class="container-fluid">
     <h2>Score @DashboardState!.Value.Total @ResultText </h2>
- 
+
     <div class="row">
         <div class="col-sm-12">
             <div class="row m-2">
@@ -74,6 +75,9 @@
 
         }
     }
+  
+}
+
 }
 
 
